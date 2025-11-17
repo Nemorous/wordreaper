@@ -34,6 +34,19 @@ wordreaper -m html -u https://en.wikipedia.org/wiki/List_of_dragons_in_popular_c
 
 # Scrape multiple selectors (comma separated)
 wordreaper -m html -u https://the.greatest.website/stuff -s "h1, h2, h3" -o wordlist.txt
+
+# Scrape elements while using href 
+wordreaper --method html --url https://bulbapedia.bulbagarden.net/wiki/List_of_Pokémon_by_name \
+           --selector "table.roundy a" --href "_(Pok%C3%A9mon)" -o pokemon.txt
+
+# Scrape elements while using :first-child, :last-child, :nth-child(), etc
+wordreaper -m html -u https://en.wikipedia.org/wiki/List_of_dragons_in_popular_culture \
+           -s "table.wikitable tbody tr td:first-child" -o dragons.txt
+
+# Combine :not(), :nth-child(), classes, attributes, --href and --regex for surgical precision
+wordreaper -m html -u https://harrypotter.fandom.com/wiki/Password \
+           -s "h4 + table.fandom-table tbody tr td:not([rowspan])"
+           --regex "^(?\!\d)(?\!Latin).*" -o dorm_passwords.txt
 ```
 
 ### Tag-Based Scraping
@@ -46,6 +59,13 @@ wordreaper --method html --url https://example.com --tags a p li h1 h2 -o wordli
 
 # Scrape from multiple inline elements with minimum length filter
 wordreaper -m html -u https://example.com -t a span div --min-length 3 -o words.txt
+```
+
+### Batch Scraping with HTML
+
+```bash
+# Use --url-file 'urls.txt' to scrape numerous sites at once with different selectors
+wordreaper --method html --url-file urls.txt -o wordlist.txt
 ```
 
 ### Advanced Filtering
