@@ -145,6 +145,9 @@ wordreaper --prepend-mask ?a?a?a --increment -i input.txt -o prepend.txt
 # Both prepend and append
 wordreaper --prepend-mask ?d?d --append-mask ?s?s -i input.txt -o both.txt
 
+# Append & Prepend while using increment
+wordreaper --prepend-mask ?s?s --append-mask ?d?d?d?d --increment -i input.txt -o output.txt
+
 # Custom mask patterns
 wordreaper --custom-mask "CTF-?uS?u?u-1337" -o flag_patterns.txt
 ```
