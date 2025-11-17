@@ -157,6 +157,7 @@ def main():
         # HTML Scraping Options
         html_group = parser.add_argument_group('HTML Scraping')
         html_group.add_argument('-s', '--selector', help='CSS selector for precise HTML element targeting (preferred)')
+        html_group.add_argument('-f', '--url-file', help='File with urls/selectors (format: "url selector" per line)')
         html_group.add_argument('--href', help='Filter: only keep links where href contains this text')
         html_group.add_argument('--regex', help='Filter: only keep text matching this regex pattern')
         html_group.add_argument('-t', '--tags', nargs='+', help='List of HTML tags to scrape from')
@@ -200,19 +201,33 @@ def main():
         args = parser.parse_args()
 
         # Validation logic
-        if args.method in ['html', 'github', 'text'] and not args.url:
-            print(f"\n{RED}Error:{RESET} --url is required when using --method {args.method}\n")
+        if args.method in ['html', 'github', 'text'] and not args.url and not args.url_file:
+            print(f"\n{RED}Error:{RESET} --url or --url-file is required when using --method {args.method}\n")
             sys.exit(1)
-            
+
         if args.method == 'file' and not args.input:
             print(f"\n{RED}Error:{RESET} --input is required when using --method file\n")
             sys.exit(1)
 
         if args.method == 'html':
-            # Require either --selector or --tags for HTML scraping
-            if not args.selector and not args.tags:
-                print(f"\n{RED}Error:{RESET} Either --selector or --tags is required for HTML scraping\n")
+            # Mutual exclusivity checks
+            if args.url and args.url_file:
+                print(f"\n{RED}Error:{RESET} Cannot use both --url and --url-file together\n")
                 sys.exit(1)
+
+            # For single URL mode, require either --selector or --tags
+            if args.url and not args.selector and not args.tags:
+                print(f"\n{RED}Error:{RESET} Either --selector or --tags is required for HTML scraping with --url\n")
+                sys.exit(1)
+
+            # For url-file mode, selectors are embedded in the file
+            if args.url_file:
+                if args.selector:
+                    print(f"\n{RED}Error:{RESET} Cannot use --selector with --url-file (selectors should be in the file)\n")
+                    sys.exit(1)
+                if not os.path.isfile(args.url_file):
+                    print(f"\n{RED}Error:{RESET} URL file not found: {args.url_file}\n")
+                    sys.exit(1)
 
         # Validate --rules requires --input
         if args.rules and not args.input:
@@ -487,17 +502,72 @@ def main():
         # Process based on method
         raw_words = []
         if args.method == 'html':
-            raw_words = html_scraper.scrape(
-                args.url,
-                selector=args.selector,
-                href_contains=args.href,
-                text_regex=args.regex,
-                tags=args.tags,
-                min_length=args.min_length,
-                max_length=args.max_length,
-                silent=args.quiet,
-                preserve=args.preserve
-            )
+            if args.url_file:
+                # Batch scraping mode with url-file
+                if not args.quiet:
+                    print(f"\nBatch scraping from URL file: {RED}{args.url_file}{RESET}")
+
+                # Parse the URL file
+                url_selector_pairs = []
+                try:
+                    with open(args.url_file, 'r', encoding='utf-8', errors='ignore') as f:
+                        for line_num, line in enumerate(f, 1):
+                            line = line.strip()
+
+                            # Skip empty lines and comments
+                            if not line or line.startswith('#'):
+                                continue
+
+                            # Split on first space only
+                            parts = line.split(' ', 1)
+                            if len(parts) != 2:
+                                print(f"{RED}Warning: Skipping malformed line {line_num}: {line}{RESET}")
+                                continue
+
+                            url, selector = parts
+                            url_selector_pairs.append((url.strip(), selector.strip()))
+
+                except Exception as e:
+                    print(f"{RED}Error reading URL file: {e}{RESET}")
+                    sys.exit(1)
+
+                if not url_selector_pairs:
+                    print(f"{RED}Error: No valid URL/Selector pairs found in file{RESET}")
+                    sys.exit(1)
+
+                if not args.quiet:
+                    print(f"Found {RED}{len(url_selector_pairs)}{RESET} URL/Selector pairs")
+
+                # Scrape each URL with its selector
+                for url, selector in url_selector_pairs:
+                    words = html_scraper.scrape(
+                        url,
+                        selector=selector,
+                        href_contains=args.href,
+                        text_regex=args.regex,
+                        tags=None,  # Don't use default tags when selector is provided
+                        min_length=args.min_length,
+                        max_length=args.max_length,
+                        silent=args.quiet,
+                        preserve=args.preserve
+                    )
+                    raw_words.extend(words)
+
+                if not args.quiet:
+                    print(f"\nTotal words extracted: {RED}{len(raw_words)}{RESET}")
+            else:
+                # Single URL mode
+                raw_words = html_scraper.scrape(
+                    args.url,
+                    selector=args.selector,
+                    href_contains=args.href,
+                    text_regex=args.regex,
+                    tags=args.tags,
+                    min_length=args.min_length,
+                    max_length=args.max_length,
+                    silent=args.quiet,
+                    preserve=args.preserve
+                )
         elif args.method == 'github':
             raw_words = github_scraper.scrape(args.url, silent=args.quiet, preserve=args.preserve)
         elif args.method == 'file':
