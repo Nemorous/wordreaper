@@ -90,7 +90,7 @@ wordreaper --rules /path/to/hashcat/rules/best66.rule -i input.txt -o output.txt
 wordreaper --rules /path/to/custom.rule -i words.txt -o custom.txt
 ```
 
-### Transform Operations
+### 🛠️ Transform Operations
 ```bash
 # Selective leetspeak with max substitutions
 wordreaper --selective-leet 3 -i input.txt -o selective.txt
@@ -104,7 +104,7 @@ wordreaper --separators "-" -i input.txt -o hyphens.txt
 wordreaper --separators "." -i input.txt -o decimals.txt
 ```
 
-### Case Conversion
+### 🔠 Case Conversion
 ```bash
 # Convert to lowercase
 wordreaper --convert lower -i input.txt -o lowercase.txt
@@ -122,7 +122,7 @@ wordreaper --convert sentence -i input.txt -o Sentencecase.txt
 wordreaper -c all -i input.txt -o all_cases.txt
 ```
 
-### Mutations with Complexity Levels
+### 🧪 Mutations with Complexity Levels
 ```bash
 # Basic mutations (~60 mutations/word)
 wordreaper --mutate --mutation-level 1 -i input.txt -o basic.txt
@@ -134,7 +134,7 @@ wordreaper --mutate --mutation-level 2 -i input.txt -o intermediate.txt
 wordreaper -x --mutation-level 3 -i input.txt -o advanced.txt
 ```
 
-### Hashcat-style Mask Operations
+### 🎭 Hashcat-style Mask Operations
 ```bash
 # Append masks
 wordreaper --append-mask ?d?d?d -i input.txt -o append.txt
