@@ -40,7 +40,7 @@ pip install .
 
 ### 📦 Install via PyPI (Optional)
 ```bash
-pip install wordreaper
+pip install word-reaper
 ```
 
 ---
