@@ -122,7 +122,7 @@ wordreaper --convert sentence -i input.txt -o Sentencecase.txt
 wordreaper -c all -i input.txt -o all_cases.txt
 ```
 
-### Mutations with Levels
+### Mutations with Complexity Levels
 ```bash
 # Basic mutations (~60 mutations/word)
 wordreaper --mutate --mutation-level 1 -i input.txt -o basic.txt
@@ -134,7 +134,7 @@ wordreaper --mutate --mutation-level 2 -i input.txt -o intermediate.txt
 wordreaper -x --mutation-level 3 -i input.txt -o advanced.txt
 ```
 
-### Mask Operations (Standalone)
+### Hashcat-style Mask Operations
 ```bash
 # Append masks
 wordreaper --append-mask ?d?d?d -i input.txt -o append.txt
