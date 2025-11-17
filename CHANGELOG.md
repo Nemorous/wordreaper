@@ -1,5 +1,53 @@
 # Changelog
 
+## [2.0.0] - 2025-01-13
+### 🚨 Breaking Changes
+- **REMOVED**: Legacy HTML scraping options `--tag`, `--class`, `--id` (replaced with `--selector` and `--tags`)
+- **REMOVED**: `--scrape-mode smart` and `--scrape-mode targeted` (inaccurate and noisy)
+- **REMOVED**: Old transformation flags when used with mutation operations
+- **RENAMED**: `--mentalize` → `--mutate` (clearer naming)
+- **CHANGED**: `--mutation-level` now directly controls complexity (not based on flag count)
+
+### ✨ Major Features Added
+- **Hashcat Rules**: `--rules` runs hashcat rules against wordlists
+- **Transform Options**
+  - `--selective-leet <MAX>`: Selective leetspeak with max substitutions
+  - `--reverse`: Reverse each word
+  - `--separators <CHAR>`: Add separators between word segments (using wordninja)
+- **Case Conversion**: New `--convert` with sub-options:
+  - `lower`: Convert to lowercase
+  - `upper`: Convert to UPPERCASE
+  - `pascal`: Convert to PascalCase (using wordninja for word segmentation)
+  - `sentence`: Convert to Sentencecase
+  - `all`: Convert to all case types (lower, upper, pascal, sentence)
+- **Standalone Mask Operations**: `--append-mask` and `--prepend-mask` now work without requiring other flags
+- **Mutation Levels**: `--mutate --mutation-level {1,2,3}` for precise control:
+  - Level 1: ~60 mutations per word (Basic)
+  - Level 2: ~350 mutations per word (Intermediate)
+  - Level 3: ~24k mutations per word (Advanced)
+
+### 🎯 HTML Scraping Improvements
+- Precision CSS selectors with `--selector` (primary method)
+- Tag-based scraping with `--tags` for broader capture
+- Removed noisy smart/targeted modes for cleaner, more accurate results
+- Fixed scraping functionality as to not split words
+
+### 📦 Dependencies
+- Added `wordninja` for word segmentation (used in `--separators` and `pascal`)
+- Updated all package files to include rules directory
+
+### 🔧 Technical Improvements
+- Created new `transform.py` module
+- Improved argument validation and mutual exclusivity checks
+- Better error messages and user guidance
+- Most operations can now work independently (no nested flag requirements)
+
+### 📚 Documentation
+- Complete rewrite and reformatting of help text
+- Added EXAMPLES.md for thorough usage examples and suggestions
+- Updated README.md with all new features and usage examples
+- Added tag-based scraping examples
+
 ## [1.0.2] - 2025-04-10
 ### Fixed
 - Edited `README.md` banner image link to use raw GitHub URL for PyPI compatibility

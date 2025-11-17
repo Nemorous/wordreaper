@@ -1,6 +1,6 @@
 
 
-<h1 align="left">WordReaper v1.0.2 <img src="assets/scythe.png" width="64"/></h1>
+<h1 align="left">WordReaper v2.0.0 <img src="assets/scythe.png" width="64"/></h1>
 
 
 
@@ -21,7 +21,7 @@
 
 It supports:
 
-- 🕸️ HTML scraping (with tag/class/id filtering)
+- 🕸️ HTML scraping (with precision CSS selectors)
 - 🐙 GitHub/Gist wordlist pulling (`raw.githubusercontent.com` and `gist.githubusercontent.com`)
 - 📁 Local file loading and mentalist-style mutations
 - 🔄 Hashcat-style mask-based permutations
@@ -48,9 +48,16 @@ pip install word-reaper
 
 ## ⚙️ Usage
 
-### 📥 HTML Scraping with Tag/Class/ID Filtering
+### 📥 HTML Scraping with CSS Selectors
 ```bash
-wordreaper --method html --url https://example.com --tag a --class content
+wordreaper --method html --url https://example.com --selector "a.content"
+```
+
+### 📥 HTML Scraping with Tags
+Scrape from multiple HTML tag types:
+```bash
+wordreaper --method html --url https://example.com --tags a p li h1 h2 -o wordlist.txt
+wordreaper -m html -u https://example.com --tags a span div --min-length 3 -o words.txt
 ```
 
 ### 🐙 GitHub Scraping
@@ -67,18 +74,73 @@ wordreaper --method file --input wordlist.txt
 
 ---
 
-## 🧠 Wordlist Mutations & Permutations
+## 🧠 Word Transformations & Mutations
 
+### Hashcat Rules (Standalone)
+Apply any Hashcat rules file directly to your wordlist:
 ```bash
-wordreaper --mentalize --input input.txt --output mutated.txt \
---leet --toggle --underscores --append-mask ?d?d --increment
+wordreaper --rules /path/to/hashcat/rules/best66.rule -i input.txt -o output.txt
+wordreaper --rules /path/to/custom.rule -i words.txt -o custom.txt
 ```
 
-Supports:
-- ✅ Leetspeak (`--leet`)
-- ✅ Case toggling (`--toggle`)
-- ✅ Separators: `--underscores`, `--spaces`, `--hyphens`)
-- ✅ Permutations: `--append-mask`, `--prepend-mask`, `--synchronize`, `--increment`
+### Transform Operations
+```bash
+# Selective leetspeak with max substitutions
+wordreaper --selective-leet 3 -i input.txt -o selective.txt
+
+# Reverse words
+wordreaper --reverse -i input.txt -o reversed.txt
+
+# Add separators between word segments
+wordreaper --separators "_" -i input.txt -o underscores.txt
+wordreaper --separators "-" -i input.txt -o hyphens.txt
+wordreaper --separators "." -i input.txt -o decimals.txt
+```
+
+### Case Conversion
+```bash
+# Convert to lowercase
+wordreaper --convert lower -i input.txt -o lowercase.txt
+
+# Convert to UPPERCASE
+wordreaper --convert upper -i input.txt -o uppercase.txt
+
+# Convert to PascalCase (uses word segmentation)
+wordreaper --convert pascal -i input.txt -o PascalCase.txt
+
+# Convert to Sentencecase
+wordreaper --convert sentence -i input.txt -o Sentencecase.txt
+
+# Apply all case conversions
+wordreaper -c all -i input.txt -o all_cases.txt
+```
+
+### Mutations with Levels
+```bash
+# Basic mutations (~60 mutations/word)
+wordreaper --mutate --mutation-level 1 -i input.txt -o basic.txt
+
+# Intermediate mutations (~350 mutations/word)
+wordreaper --mutate --mutation-level 2 -i input.txt -o intermediate.txt
+
+# Advanced mutations (~24k mutations/word)
+wordreaper -x --mutation-level 3 -i input.txt -o advanced.txt
+```
+
+### Mask Operations (Standalone)
+```bash
+# Append masks
+wordreaper --append-mask ?d?d?d -i input.txt -o append.txt
+
+# Prepend masks
+wordreaper --prepend-mask ?u?l -i input.txt -o prepend.txt
+
+# Both prepend and append
+wordreaper --prepend-mask ?d?d --append-mask ?s?s -i input.txt -o both.txt
+
+# Custom mask patterns
+wordreaper --custom-mask "CTF-?uS?u?u-1337" -o flag_patterns.txt
+```
 
 ---
 

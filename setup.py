@@ -4,24 +4,30 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="word-reaper",
-    version="1.0.2",
+    name="wordreaper",
+    version="2.0.0",
     author="d4rkfl4m3z",
     description="Reap & Forge Wordlists for Password Cracking",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Nemorous/word-reaper",
+    url="https://github.com/Nemorous/wordreaper",
     project_urls={
-        "Documentation": "https://github.com/Nemorous/word-reaper#readme",
-        "Bug Tracker": "https://github.com/Nemorous/word-reaper/issues",
-        "Source": "https://github.com/Nemorous/word-reaper"
+        "Documentation": "https://github.com/Nemorous/wordreaper#readme",
+        "Bug Tracker": "https://github.com/Nemorous/wordreaper/issues",
+        "Source": "https://github.com/Nemorous/wordreaper"
     },
     packages=find_packages(),
     install_requires=[
         "requests",
         "beautifulsoup4",
-        "colorama"
+        "colorama",
+        "tqdm",
+        "psutil",
+        "wordninja"
     ],
+    extras_require={
+        "optimizations": ["psutil"]
+    },
     entry_points={
         "console_scripts": [
             "wordreaper=word_reaper.word_reaper:main"
@@ -43,6 +49,8 @@ setup(
     ],
     license="MIT",
     python_requires='>=3.6',
+    package_data={
+        "word_reaper": ["bin/*", "rules/*"],
+    },
     include_package_data=True,
 )
-
