@@ -1,6 +1,14 @@
 # Changelog
 
-## [2.0.0] - 2025-01-13
+## [2.1.0] - 2025-11-17
+### Fixed
+- Solved issue causing --min-length and --max-length to not work
+- Edited HTML scraper to remove subscript, superscript, citation, and reference when scraping
+
+### Added
+- HTML batch scraping added using (-f, --url-file) to scrape from multiple URLs using different selectors
+
+## [2.0.0] - 2025-11-16
 ### 🚨 Breaking Changes
 - **REMOVED**: Legacy HTML scraping options `--tag`, `--class`, `--id` (replaced with `--selector` and `--tags`)
 - **REMOVED**: `--scrape-mode smart` and `--scrape-mode targeted` (inaccurate and noisy)
