@@ -38,11 +38,6 @@ cd wordreaper
 pip install .
 ```
 
-### 📦 Install via PyPI (Optional)
-```bash
-pip install word-reaper
-```
-
 ---
 
 ## ⚙️ Usage
