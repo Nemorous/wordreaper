@@ -49,6 +49,7 @@ pip install word-reaper
 
 ### 📥 HTML Scraping with CSS Selectors
 ```bash
+# Combine :not(), :nth-child(), classes, attributes, --href and --regex for surgical precision
 wordreaper --method html --url https://example.com --selector "a.content"
 wordreaper --method html --url https://example.com --selector "li, td" \
            --regex "^[A-Z][a-z]+$" --min-length 3 --max-length 20
@@ -57,7 +58,9 @@ wordreaper --method html --url https://bulbapedia.bulbagarden.net/wiki/List_of_P
            --selector "table.roundy a" --href "_(Pok%C3%A9mon)" -o pokemon.txt
 wordreaper -m html -u https://en.wikipedia.org/wiki/List_of_dragons_in_popular_culture \
            -s "table.wikitable tbody tr td:first-child" -o dragons.txt
-
+wordreaper -m html -u https://harrypotter.fandom.com/wiki/Password \
+           -s "h4 + table.fandom-table tbody tr td:not([rowspan])"
+           --regex "^(?\!\d)(?\!Latin).*" -o dorm_passwords.txt
 ```
 
 ### 📥 HTML Scraping with Tags
