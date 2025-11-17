@@ -52,7 +52,7 @@ pip install word-reaper
 wordreaper --method html --url https://example.com --selector "a.content"
 wordreaper --method html --url https://example.com --selector "li, td" \
            --regex "^[A-Z][a-z]+$" --min-length 3 --max-length 20
-wordreaper --method html --url https://random.wikipedia.site --selector "h1, h2, h3, div.mw-content" -o wordlist.txt
+wordreaper --method html --url https://random.wikipedia.site --selector "h1, h2, h3, div.mw-content"
 wordreaper --method html --url https://bulbapedia.bulbagarden.net/wiki/List_of_Pokémon_by_name \
            --selector "table.roundy a" --href "_(Pok%C3%A9mon)" -o pokemon.txt
 wordreaper -m html -u https://en.wikipedia.org/wiki/List_of_dragons_in_popular_culture \
@@ -71,7 +71,7 @@ wordreaper -m html -u https://example.com --tags a span div --min-length 3 -o wo
 Supports both GitHub raw and Gist raw URLs:
 ```bash
 wordreaper --method github --url https://raw.githubusercontent.com/username/repo/main/file.txt
-wordreaper --method github --url https://gist.githubusercontent.com/username/gistid/raw/commitid/file.txt
+wordreaper -m github -u https://gist.githubusercontent.com/username/gistid/raw/commitid/file.txt
 ```
 
 ### 📁 Local File Loading
