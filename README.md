@@ -69,6 +69,11 @@ wordreaper --method html --url https://example.com --tags a p li h1 h2 -o wordli
 wordreaper -m html -u https://example.com --tags a span div --min-length 3 -o words.txt
 ```
 
+### 🥣 Batch Scraping
+```bash
+wordreaper --method html --url-file urls.txt -o words.txt
+```
+
 ### 🐙 GitHub Scraping
 Supports both GitHub raw and Gist raw URLs:
 ```bash
