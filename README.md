@@ -1,6 +1,6 @@
 
 
-<h1 align="left">WordReaper v2.0.0 <img src="assets/scythe.png" width="64"/></h1>
+<h1 align="left">Word Reaper v2.0.0 <img src="assets/scythe.png" width="64"/></h1>
 
 
 
@@ -16,7 +16,7 @@
 
 ## 💡 What is Word Reaper?
 
-**WordReaper** is a powerful, modular tool for generating, mutating, and combining wordlists — ideal for use in redteaming and CTFs.
+**WordReaper** is a powerful, modular tool for generating, mutating, and combining wordlists — ideal for use in cracking password hashes.
 
 It supports:
 
@@ -24,7 +24,7 @@ It supports:
 - 🐙 GitHub/Gist wordlist pulling (`raw.githubusercontent.com` and `gist.githubusercontent.com`)
 - 📁 Local file loading and mentalist-style mutations
 - 🔄 Hashcat-style mask-based permutations
-- ⚔️ Merging and combining wordlists like a pro
+- ⚔️ Merging and combining wordlists
 
 ---
 
@@ -33,14 +33,14 @@ It supports:
 ### 🔧 Clone & Install Locally
 
 ```bash
-git clone https://github.com/Nemorous/word-reaper.git
-cd word-reaper
+git clone https://github.com/Nemorous/wordreaper.git
+cd wordreaper
 pip install .
 ```
 
 ### 📦 Install via PyPI (Optional)
 ```bash
-pip install word-reaper
+pip install wordreaper
 ```
 
 ---
@@ -50,6 +50,7 @@ pip install word-reaper
 ### 📥 HTML Scraping with CSS Selectors
 ```bash
 wordreaper --method html --url https://example.com --selector "a.content"
+wordreaper --method html --url https://random.wikipedia.site --selector "h1, h2, h3, div.mw-content" -o wordlist.txt
 ```
 
 ### 📥 HTML Scraping with Tags
@@ -132,7 +133,7 @@ wordreaper -x --mutation-level 3 -i input.txt -o advanced.txt
 wordreaper --append-mask ?d?d?d -i input.txt -o append.txt
 
 # Prepend masks
-wordreaper --prepend-mask ?u?l -i input.txt -o prepend.txt
+wordreaper --prepend-mask ?a?a?a --increment -i input.txt -o prepend.txt
 
 # Both prepend and append
 wordreaper --prepend-mask ?d?d --append-mask ?s?s -i input.txt -o both.txt
