@@ -20,6 +20,9 @@ DEFAULT_HEADERS = {
 # Default tags that contain meaningful content
 DEFAULT_CONTENT_TAGS = ["a", "p", "li", "td", "th", "h1", "h2", "h3", "span"]
 
+# Tags to remove before extracting text (citations, references, superscripts, subscripts)
+UNWANTED_TAGS = ["sup", "sub", "cite", "ref"]
+
 def scrape(url, selector=None, href_contains=None, text_regex=None, tags=None,
           min_length=1, max_length=None, silent=False, preserve=False):
     """
@@ -89,7 +92,12 @@ def scrape(url, selector=None, href_contains=None, text_regex=None, tags=None,
             if href_contains not in href:
                 filtered_elements += 1
                 continue
-        
+
+        # Remove unwanted tags before extracting text
+        for tag in UNWANTED_TAGS:
+            for unwanted in elem.find_all(tag):
+                unwanted.decompose()
+
         # Extract text from element
         text = elem.get_text(separator=' ', strip=True)
         
@@ -110,6 +118,30 @@ def scrape(url, selector=None, href_contains=None, text_regex=None, tags=None,
     
     if not silent and filtered_elements > 0:
         print(f"Filtered out {filtered_elements} elements based on criteria")
+
+    # Apply length filtering based on cleaned word length (not raw text)
+    # This matches the final output after cleaning removes special characters
+    if min_length > 1 or max_length is not None:
+        import unicodedata
+
+        def get_cleaned_length(word):
+            """Calculate length after cleaning (matching cleaner.py behavior)"""
+            if preserve:
+                return len(word.strip())
+            else:
+                # Apply same transformations as cleaner.py
+                cleaned = unicodedata.normalize('NFKD', word)
+                cleaned = ''.join([c for c in cleaned if not unicodedata.combining(c)])
+                cleaned = cleaned.lower()
+                cleaned = re.sub(r'[^a-z0-9]', '', cleaned)
+                return len(cleaned)
+
+        filtered_words = []
+        for word in words:
+            cleaned_len = get_cleaned_length(word)
+            if cleaned_len >= min_length and (max_length is None or cleaned_len <= max_length):
+                filtered_words.append(word)
+        return filtered_words
 
     return words
 
