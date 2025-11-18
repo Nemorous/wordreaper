@@ -23,9 +23,16 @@ It supports:
 
 - 🕸️ HTML scraping (with precision CSS selectors)
 - 🐙 GitHub/Gist/CVS wordlist pulling
-- 📁 Local file loading and mentalist-style mutations
-- 🔄 Hashcat-style mask-based permutations
-- ⚔️ Merging and combining wordlists
+- 👻 Plaintext scraping from simple lists
+- 📁 File loading from local environment
+- 🧪 Common Mutations with varying complexities
+- 🍺 Hashcat-style mask-based permutations
+- 💎 Prepend/Append simultaneously with or without increment
+- ⚔️ Merging and combining (combinator) wordlists
+- 🐱 Hashcat-style rules or custom rules
+- 💼 Case conversion to lower, upper, pascal, sentence
+- 👽 Transform with selective leet, reverse, separators
+- 🚩 Use custom masks to output flag patterns for CTFs
 
 ---
 
