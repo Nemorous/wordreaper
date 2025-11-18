@@ -1,6 +1,6 @@
 
 
-<h1 align="left">Word Reaper v2.1.0 <img src="assets/scythe.png" width="64"/></h1>
+<h1 align="left">Word Reaper v2.2.0 <img src="assets/scythe.png" width="64"/></h1>
 
 
 
