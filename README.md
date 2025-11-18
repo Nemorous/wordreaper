@@ -80,7 +80,8 @@ wordreaper --method github --url https://raw.githubusercontent.com/example/file.
            --extension csv --zero-index 0 -o output.txt
 
 # Extract third column (index 2) with preserved formatting
-wordreaper -m github -u https://raw.githubusercontent.com/user/repo/data.csv -e csv -z 2 --preserve -o column3.txt
+wordreaper -m github -u https://raw.githubusercontent.com/user/repo/data.csv \
+           -e csv -z 2 --preserve -o column3.txt
 ```
 
 ### 📁 Local File Loading
