@@ -74,6 +74,12 @@ Supports both GitHub raw and Gist raw URLs:
 ```bash
 wordreaper --method github --url https://raw.githubusercontent.com/username/repo/main/file.txt
 wordreaper -m github -u https://gist.githubusercontent.com/username/gistid/raw/commitid/file.txt
+
+# Use GitHub scraper to extract specified column from a CSV file
+wordreaper --method github --url https://raw.githubusercontent.com/danielschuster-muc/scrabby/refs/heads/main/data/characters.csv -e csv -z 0 -o output.txt
+
+# Extract third column (index 2) with preserved formatting
+wordreaper -m github -u https://raw.githubusercontent.com/user/repo/data.csv -e csv -z 2 --preserve -o column3.txt
 ```
 
 ### 📁 Local File Loading
