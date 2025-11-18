@@ -104,18 +104,16 @@ def apply_mask(input_file, mask, output_file, append=True, silent=False, increme
 
     try:
         # Build maskprocessor command with optional increment flag
+        mp_cmd = [mp_bin]
+
         if increment:
             # Calculate mask length for increment range
             # Each mask placeholder (?d, ?l, etc.) represents 1 character
             mask_length = mask.count('?')
-            increment_flag = f"-i 1:{mask_length}" if mask_length > 0 else ""
-        else:
-            increment_flag = ""
+            if mask_length > 0:
+                mp_cmd.extend(["-i", f"1:{mask_length}"])
 
-        if is_complex_mask(mask):
-            mp_cmd = f"{mp_bin} {increment_flag} '{mask}' > {temp_mask_file}"
-        else:
-            mp_cmd = f"{mp_bin} {increment_flag} {mask} > {temp_mask_file}"
+        mp_cmd.append(mask)
 
         if not silent:
             increment_msg = " (incremental)" if increment else ""
@@ -123,7 +121,10 @@ def apply_mask(input_file, mask, output_file, append=True, silent=False, increme
             print(f"\n{action} {RED}{mask}{RESET} mask combinations{increment_msg} with {RED}{os.path.basename(mp_bin)}{RESET}...\n")
 
         start_time = time.time()
-        result = subprocess.run(mp_cmd, shell=True, stderr=subprocess.PIPE, text=True)
+
+        # Run maskprocessor and redirect output to temp file
+        with open(temp_mask_file, 'w', encoding='utf-8') as f:
+            result = subprocess.run(mp_cmd, stdout=f, stderr=subprocess.PIPE, text=True)
 
         if result.returncode != 0:
             print(f"{RED}Error running maskprocessor: {result.stderr}{RESET}")
@@ -133,16 +134,20 @@ def apply_mask(input_file, mask, output_file, append=True, silent=False, increme
             elapsed = time.time() - start_time
             print(f"Mask generation completed in {RED}{elapsed:.2f}{RESET} seconds")
 
+        # Build combinator command
         if append:
-            combine_cmd = f"{combinator_bin} {input_file} {temp_mask_file} > {output_file}"
+            combine_cmd = [combinator_bin, input_file, temp_mask_file]
         else:
-            combine_cmd = f"{combinator_bin} {temp_mask_file} {input_file} > {output_file}"
+            combine_cmd = [combinator_bin, temp_mask_file, input_file]
 
         if not silent:
             print(f"Combining wordlist with mask using {RED}{os.path.basename(combinator_bin)}{RESET}...")
 
         start_time = time.time()
-        result = subprocess.run(combine_cmd, shell=True, stderr=subprocess.PIPE, text=True)
+
+        # Run combinator and redirect output to output file
+        with open(output_file, 'w', encoding='utf-8') as f:
+            result = subprocess.run(combine_cmd, stdout=f, stderr=subprocess.PIPE, text=True)
 
         if result.returncode != 0:
             print(f"{RED}Error running combinator: {result.stderr}{RESET}")
@@ -362,14 +367,13 @@ def generate_mask_directly(mask, output_file, silent=False):
         return False
 
     try:
-
-        if is_complex_mask(mask):
-            cmd = f"{mp_bin} '{mask}' > {output_file}"
-        else:
-            cmd = f"{mp_bin} {mask} > {output_file}"
+        cmd = [mp_bin, mask]
 
         start_time = time.time()
-        result = subprocess.run(cmd, shell=True, stderr=subprocess.PIPE, text=True)
+
+        # Run maskprocessor and redirect output to file
+        with open(output_file, 'w', encoding='utf-8') as f:
+            result = subprocess.run(cmd, stdout=f, stderr=subprocess.PIPE, text=True)
 
         if result.returncode != 0:
             print(f"{RED}Error running maskprocessor: {result.stderr}{RESET}")
@@ -392,4 +396,3 @@ def check_hashcat_available():
         "combinator": get_binary_path("combinator") is not None,
         "maskprocessor": (get_binary_path("mp64") is not None) or (get_binary_path("mp32") is not None)
     }
-
