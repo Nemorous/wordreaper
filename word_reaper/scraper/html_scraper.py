@@ -7,14 +7,23 @@ import re
 RED = '\033[91m'
 RESET = '\033[0m'
 
-# Default headers to mimic a real browser
+# Default headers to mimic a real browser (Chrome 120 on Windows)
 DEFAULT_HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/115.0 Safari/537.36"
-    ),
-    "Accept-Language": "en-US,en;q=0.9",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Cache-Control": "max-age=0",
+    "Priority": "u=0, i",
+    "Referer": "https://www.google.com/",
+    "sec-ch-ua": '"Chromium";v="142", "Brave";v="142", "Not_A Brand";v="99"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"Windows"',
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "cross-site",
+    "sec-fetch-user": "?1",
+    "sec-gpc": "1",
+    "Upgrade-Insecure-Requests": "1",
 }
 
 # Default tags that contain meaningful content
@@ -61,7 +70,7 @@ def scrape(url, selector=None, href_contains=None, text_regex=None, tags=None,
         # Use CSS selector (most flexible)
         elements = soup.select(selector)
         if not silent:
-            print(f"Using CSS selector(s): {selector}\n")
+            print(f"Using CSS selector(s): {selector}")
     else:
         # Smart default mode - extract from multiple content-rich tags
         target_tags = tags or DEFAULT_CONTENT_TAGS
