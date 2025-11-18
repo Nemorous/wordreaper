@@ -22,7 +22,7 @@ This tool was developed with NCL password-cracking challenges in mind.
 It supports:
 
 - 🕸️ HTML scraping (with precision CSS selectors)
-- 🐙 GitHub/Gist wordlist pulling (`raw.githubusercontent.com` and `gist.githubusercontent.com`)
+- 🐙 GitHub/Gist/CVS wordlist pulling (`raw.githubusercontent.com`, `raw.githubuserontent.com/file.csv`, `gist.githubusercontent.com`)
 - 📁 Local file loading and mentalist-style mutations
 - 🔄 Hashcat-style mask-based permutations
 - ⚔️ Merging and combining wordlists
