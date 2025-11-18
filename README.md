@@ -25,7 +25,7 @@ It supports:
 - 🐙 GitHub/Gist/CVS wordlist pulling
 - 👻 Plaintext scraping from simple lists
 - 📁 File loading from local environment
-- 🧪 Common Mutations with varying complexities
+- 🧪 Common mutations with varying complexities
 - 🍺 Hashcat-style mask-based permutations
 - 💎 Prepend/Append simultaneously with or without increment
 - ⚔️ Merging and combining (combinator) wordlists
