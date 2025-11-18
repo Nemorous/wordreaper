@@ -17,7 +17,7 @@
 ## 💡 What is Word Reaper?
 
 **Word Reaper** is a powerful, modular tool for generating, mutating, and combining wordlists — ideal for use in cracking passwords. 
-This tool was developed with NCL password-cracking challenges in mind.
+This tool was developed for Linux and Windows, with NCL password-cracking challenges in mind.
 
 It supports:
 
