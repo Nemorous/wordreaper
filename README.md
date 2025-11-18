@@ -8,7 +8,7 @@
 ⚠️ **NOTICE: This project is in early development and not yet ready for production use. Features may change, break, or be incomplete. Use at your own risk.**
 
 
-> Reap & Forge Wordlists for Password Cracking  
+> Create & Format Effective Wordlists with Surgical Precision for Password Cracking
 > By `d4rkfl4m3z`
 
 
