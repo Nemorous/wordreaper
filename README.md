@@ -94,7 +94,7 @@ wordreaper -m github -u https://raw.githubusercontent.com/user/repo/data.csv \
 
 ### 📁 Local File Loading
 ```bash
-wordreaper --method file --input wordlist.txt
+wordreaper --method file --input wordlist.txt --output cleaned_wordlist.txt
 ```
 
 ---
