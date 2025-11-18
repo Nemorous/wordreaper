@@ -68,6 +68,26 @@ wordreaper -m html -u https://example.com -t a span div --min-length 3 -o words.
 wordreaper --method html --url-file urls.txt -o wordlist.txt
 ```
 
+### GitHub Scraping CSV files to extract specified columns using zero-based indexing
+
+```bash
+# Extract first column (index 0) from CSV file
+wordreaper --method github --url https://raw.githubusercontent.com/danielschuster-muc/scrabby/refs/heads/main/data/characters.csv \
+           -e csv -z 0 -o character_names.txt
+
+# Extract second column (index 1)
+wordreaper -m github -u https://raw.githubusercontent.com/danielschuster-muc/scrabby/refs/heads/main/data/characters.csv \
+           -e csv -z 1 -o character_slugs.txt
+
+# Extract column with preserved formatting (keeps original case and spacing)
+wordreaper -m github -u https://raw.githubusercontent.com/user/repo/data.csv \
+           -e csv -z 2 --preserve -o preserved_column.txt
+
+# Real-world example: Extract email domains from user data
+wordreaper -m github -u https://raw.githubusercontent.com/company/data/users.csv \
+           -e csv -z 3 -o email_domains.txt
+```
+
 ### Advanced Filtering
 
 Combine selectors with regex patterns and length constraints:
