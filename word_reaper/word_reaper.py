@@ -165,6 +165,11 @@ def main():
         html_group.add_argument('--max-length', type=int, help='Maximum word length to include')
         html_group.add_argument('-p', '--preserve', action='store_true', help='Preserve original formatting when scraping')
 
+        # Github Scraping Options
+        github_group = parser.add_argument_group('Github Scraping')
+        github_group.add_argument('-e', '--extension', help='File extension for Github scraping: csv')
+        github_group.add_argument('-z', '--zero-index', type=int, help='Define CSV column to scrape using zero-based indexing')
+
         # Word manipulation options
         mutation_group = parser.add_argument_group('Word Manipulation')
         mutation_group.add_argument('-x', '--mutate', action='store_true', help='Mutate words using mutation levels')
@@ -208,6 +213,29 @@ def main():
         if args.method == 'file' and not args.input:
             print(f"\n{RED}Error:{RESET} --input is required when using --method file\n")
             sys.exit(1)
+
+        # Validate Github CSV scraping options
+        if args.extension:
+            if args.method != 'github':
+                print(f"\n{RED}Error:{RESET} --extension can only be used with --method github\n")
+                sys.exit(1)
+            if args.extension == 'csv' and args.zero_index is None:
+                print(f"\n{RED}Error:{RESET} --zero-index must be specified when --extension csv is used\n")
+                sys.exit(1)
+            if args.extension != 'csv':
+                print(f"\n{RED}Error:{RESET} Only 'csv' extension is currently supported\n")
+                sys.exit(1)
+
+        if args.zero_index is not None:
+            if args.method != 'github':
+                print(f"\n{RED}Error:{RESET} --zero-index can only be used with --method github\n")
+                sys.exit(1)
+            if not args.extension or args.extension != 'csv':
+                print(f"\n{RED}Error:{RESET} --extension csv must be specified when using --zero-index\n")
+                sys.exit(1)
+            if args.zero_index < 0:
+                print(f"\n{RED}Error:{RESET} --zero-index must be a non-negative integer\n")
+                sys.exit(1)
 
         if args.method == 'html':
             # Mutual exclusivity checks
@@ -532,11 +560,11 @@ def main():
                     sys.exit(1)
 
                 if not url_selector_pairs:
-                    print(f"{RED}Error: No valid URL/Selector pairs found in file{RESET}")
+                    print(f"{RED}Error: No valid URL/selector pairs found in file{RESET}")
                     sys.exit(1)
 
                 if not args.quiet:
-                    print(f"Found {RED}{len(url_selector_pairs)}{RESET} URL/Selector pairs")
+                    print(f"Found {RED}{len(url_selector_pairs)}{RESET} URL/selector pairs")
 
                 # Scrape each URL with its selector
                 for url, selector in url_selector_pairs:
@@ -569,7 +597,13 @@ def main():
                     preserve=args.preserve
                 )
         elif args.method == 'github':
-            raw_words = github_scraper.scrape(args.url, silent=args.quiet, preserve=args.preserve)
+            raw_words = github_scraper.scrape(
+                args.url,
+                silent=args.quiet,
+                preserve=args.preserve,
+                extension=args.extension,
+                column_index=args.zero_index
+            )
         elif args.method == 'file':
             if not args.input:
                 print(f"\n{RED}Error:{RESET} --input is required when using --method file\n")
