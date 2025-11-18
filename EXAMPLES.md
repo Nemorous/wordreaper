@@ -35,10 +35,6 @@ wordreaper -m html -u https://en.wikipedia.org/wiki/List_of_dragons_in_popular_c
 # Scrape multiple selectors (comma separated)
 wordreaper -m html -u https://the.greatest.website/stuff -s "h1, h2, h3" -o wordlist.txt
 
-# Scrape elements while using href 
-wordreaper --method html --url https://bulbapedia.bulbagarden.net/wiki/List_of_Pokémon_by_name \
-           --selector "table.roundy a" --href "_(Pok%C3%A9mon)" -o pokemon.txt
-
 # Scrape elements while using :first-child, :last-child, :nth-child(), etc
 wordreaper -m html -u https://en.wikipedia.org/wiki/List_of_dragons_in_popular_culture \
            -s "table.wikitable tbody tr td:first-child" -o dragons.txt
