@@ -4,4 +4,5 @@ requests
 tqdm
 psutil
 wordninja
+setuptools
 
