@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="wordreaper",
-    version="2.1.0",
+    version="2.2.1",
     author="d4rkfl4m3z",
     description="Reap & Forge Wordlists for Password Cracking",
     long_description=long_description,
