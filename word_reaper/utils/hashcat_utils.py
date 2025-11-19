@@ -14,7 +14,7 @@ import time
 import shutil
 import uuid
 import re
-import pkg_resources
+from importlib.resources import files
 from tqdm import tqdm
 
 # ANSI colors
@@ -45,7 +45,7 @@ def get_binary_path(binary_name):
         raise RuntimeError(f"Unsupported platform: {system}")
 
     try:
-        bin_path = pkg_resources.resource_filename("word_reaper", f"bin/{binary_name}")
+        bin_path = str(files("word_reaper").joinpath(f"bin/{binary_name}"))
     except Exception:
         bin_path = None
 
