@@ -23,7 +23,8 @@ setup(
         "colorama",
         "tqdm",
         "psutil",
-        "wordninja"
+        "wordninja",
+        "setuptools"
     ],
     extras_require={
         "optimizations": ["psutil"]
