@@ -126,7 +126,7 @@ def scrape(url, selector=None, href_contains=None, text_regex=None, tags=None,
             words.append(text.replace(' ', ''))
     
     if not silent and filtered_elements > 0:
-        print(f"Filtered out {filtered_elements} elements based on criteria")
+        print(f"Filtered out {RED}{filtered_elements}{RESET} elements based on criteria")
 
     # Apply length filtering based on cleaned word length (not raw text)
     # This matches the final output after cleaning removes special characters
