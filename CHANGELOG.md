@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.2.1] - 2025-11-18
+### Added
+- setuptools added to requirements.txt and setup.py
+
+## [2.2.0] - 2025-11-17
+### Updated
+- Updated EXAMPLES.md and README.md to reflect recent updates
+- Added better default headers to scraper files to mimic a real browser and avoid blocks
+- Extended functionality for GitHub Scraper to extract a specified column from CSV files
+- Added .exe equivalents of the hashcat binaries for full cross-platform functionality with Windows
+- Edited code in hashcat_utils.py to enable full functionality in both Windows and Linux systems
+
 ## [2.1.0] - 2025-11-17
 ### Fixed
 - Solved issue causing --min-length and --max-length to not work
