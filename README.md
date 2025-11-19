@@ -1,11 +1,9 @@
 
 
-<h1 align="left">Word Reaper v2.2.1 <img src="assets/scythe.png" width="64"/></h1>
+<h1 align="left">Word Reaper v2.2.1 </h1>
 
+<img src="assets/wordreaper.png">
 
-
-
-⚠️ **NOTICE: This project is in early development and not yet ready for production use. Features may change, break, or be incomplete. Use at your own risk.**
 
 
 > Create & Format Effective Wordlists with Surgical Precision for Password Cracking<br>
@@ -48,7 +46,7 @@ pip install .
 
 ---
 
-## ⚙️ Usage
+## <img src="assets/scythe.png" width="48"/> Usage
 
 ### 📥 HTML Scraping with CSS Selectors
 ```bash
