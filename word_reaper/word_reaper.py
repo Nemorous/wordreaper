@@ -6,7 +6,7 @@ This tool allows you to scrape, manipulate, and combine wordlists for password c
 with high-performance using Hashcat utilities.
 
 Author: d4rkfl4m3z
-Version: 2.0.0
+Version: 2.2.1
 """
 import argparse
 import sys
