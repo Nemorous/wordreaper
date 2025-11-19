@@ -1,6 +1,6 @@
 
 
-<h1 align="left">Word Reaper v2.2.1 </h1>
+<h1 align="left">Word Reaper</h1>
 
 <img src="assets/wordreaper.png">
 
