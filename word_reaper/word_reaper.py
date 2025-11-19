@@ -6,7 +6,7 @@ This tool allows you to scrape, manipulate, and combine wordlists for password c
 with high-performance using Hashcat utilities.
 
 Author: d4rkfl4m3z
-Version: 2.2.1
+Version: 2.0.0
 """
 import argparse
 import sys
@@ -375,7 +375,7 @@ def main():
         if args.rules:
             from word_reaper.utils.hashcat_utils import apply_custom_rules_file
             if not args.quiet:
-                print(f"\nApplying Hashcat rules from: {RED}{args.rules}{RESET}")
+                print(f"\nApplying rules from: {RED}{args.rules}{RESET}")
             success = apply_custom_rules_file(args.input, args.rules, args.output, args.quiet)
             if not success:
                 print(f"{RED}Error: Rules application failed.{RESET}")
