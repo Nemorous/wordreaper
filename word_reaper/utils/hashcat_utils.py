@@ -208,8 +208,6 @@ def apply_rules(input_file, rules, output_file, silent=False, rules_file=None, u
 
 def apply_custom_rules_file(input_file, rules_file, output_file, silent=False):
     try:
-        if not silent:
-            print(f"{GREEN}Applying custom rules from {rules_file}...{RESET}")
 
         with open(rules_file, 'r', encoding='utf-8') as f:
             rules = [line.strip() for line in f if line.strip() and not line.startswith('#')]
@@ -219,7 +217,7 @@ def apply_custom_rules_file(input_file, rules_file, output_file, silent=False):
             return False
 
         if not silent:
-            print(f"Loaded {len(rules)} rules from file")
+            print(f"Loaded {RED}{len(rules)}{RESET} rules from file\n")
 
         with open(input_file, 'r', encoding='utf-8', errors='ignore') as f:
             words = [line.strip() for line in f if line.strip()]
@@ -241,7 +239,7 @@ def apply_custom_rules_file(input_file, rules_file, output_file, silent=False):
                 f.write(word + '\n')
 
         if not silent:
-            print(f"{GREEN}Applied rules to {len(words)} words, generated {len(results)} total words{RESET}")
+            print(f"Applied rules and generated {RED}{len(results)}{RESET} words to output...")
 
         return True
 
