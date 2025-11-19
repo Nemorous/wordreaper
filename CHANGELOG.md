@@ -4,6 +4,7 @@
 ### Added
 - Added setuptools to requirements.txt and setup.py
 - Replaced deprecated pkg_resources usage with modern importlib
+- Changed --rules function to have consistent aesthetics
 
 ## [2.2.0] - 2025-11-17
 ### Updated
