@@ -2,7 +2,8 @@
 
 ## [2.2.1] - 2025-11-18
 ### Added
-- setuptools added to requirements.txt and setup.py
+- Added setuptools to requirements.txt and setup.py
+- Replaced deprecated pkg_resources usage with modern importlib
 
 ## [2.2.0] - 2025-11-17
 ### Updated
