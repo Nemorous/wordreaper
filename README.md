@@ -48,7 +48,7 @@ pip install .
 
 ## <img src="assets/scythe.png" width="48"/> Usage
 
-### 📥 HTML Scraping with CSS Selectors
+### 💀 HTML Scraping with CSS Selectors
 ```bash
 # Combine :not(), :nth-child(), classes, attributes, --href and --regex for surgical precision
 wordreaper --method html --url https://example.com --selector "a.content"
@@ -63,7 +63,7 @@ wordreaper -m html -u https://harrypotter.fandom.com/wiki/Password \
            --regex "^(?\!\d)(?\!Latin).*" -o dorm_passwords.txt
 ```
 
-### 📥 HTML Scraping with Tags
+### 🍰 HTML Scraping with Tags
 Scrape from multiple HTML tag types:
 ```bash
 wordreaper --method html --url https://example.com --tags a p li h1 h2 -o wordlist.txt
@@ -172,7 +172,7 @@ wordreaper --custom-mask "CTF-?uS?u?u-1337" -o flag_patterns.txt
 
 ## 🧰 Other Features
 
-### 🪓 Reaper ASCII Art
+### 🧸 Reaper ASCII Art
 ```bash
 wordreaper --ascii-art
 ```
