@@ -14,7 +14,7 @@
 
 ## 💡 What is Word Reaper?
 
-**Word Reaper** is a powerful, modular tool for generating, mutating, and combining wordlists — ideal for use in cracking passwords. 
+**Word Reaper** is a powerful, modular tool for generating, mutating, and combining wordlists — ideal for use in cracking passwords with themes/subthemes. 
 This tool was developed for Linux and Windows, with NCL password-cracking challenges in mind.
 
 It supports:
@@ -73,6 +73,26 @@ wordreaper -m html -u https://example.com --tags a span div --min-length 3 -o wo
 ### 🥣 Batch Scraping with HTML
 ```bash
 wordreaper --method html --url-file urls.txt -o words.txt
+```
+
+### 📄 Pagination Support
+Automatically scrape multiple pages by following specified identifiers:
+```bash
+# Follow css identifier
+wordreaper -m html -u "https://harrypotter.fandom.com/wiki/Category:Potion_ingredients" \
+           -s "a.category-page__member-link" -n 2 "a.category-page__pagination-next" -o ingredients.txt
+
+# Follow URL pattern
+wordreaper -m html -u "https://example.com/items?page=1" \
+           -s "div.item-name" -n 10 "*?page=*" -o items.txt
+
+# Follow link text
+wordreaper -m html -u "https://example.com/episodes" \
+           -s "h2.episode-title" -n 8 "Next" -o episodes.txt
+
+# Follow unicode symbols
+wordreaper -m html -u "https://example.com/list" \
+           -s "span.name" -n 3 "→" -o names.txt
 ```
 
 ### 🐙 GitHub Scraping
