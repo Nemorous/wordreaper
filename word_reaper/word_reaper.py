@@ -6,7 +6,7 @@ This tool allows you to scrape, manipulate, and combine wordlists for password c
 with high-performance using Hashcat utilities.
 
 Author: d4rkfl4m3z
-Version: 2.0.0
+Version: 2.3.0
 """
 import argparse
 import sys
@@ -158,6 +158,7 @@ def main():
         html_group = parser.add_argument_group('HTML Scraping')
         html_group.add_argument('-s', '--selector', help='CSS selector for precise HTML element targeting (preferred)')
         html_group.add_argument('-f', '--url-file', help='File with urls/selectors (format: "url selector" per line)')
+        html_group.add_argument('-n', '--next-page', nargs='*', help='Next page(s) to scrape with max pages')
         html_group.add_argument('--href', help='Filter: only keep links where href contains this text')
         html_group.add_argument('--regex', help='Filter: only keep text matching this regex pattern')
         html_group.add_argument('-t', '--tags', nargs='+', help='List of HTML tags to scrape from')
@@ -256,6 +257,32 @@ def main():
                 if not os.path.isfile(args.url_file):
                     print(f"\n{RED}Error:{RESET} URL file not found: {args.url_file}\n")
                     sys.exit(1)
+
+        # Validate --next-page argument
+        if args.next_page is not None:
+            # Check if both arguments are provided (this catches 0 or 1 argument cases)
+            if len(args.next_page) != 2:
+                print(f"\n{RED}Error:{RESET} --next-page requires exactly 2 arguments")
+                print(f"Syntax: --next-page MAX_PAGES (integer) \"NEXT_IDENTIFIER\" (css selector, url pattern, or matching link text)\n")
+                sys.exit(1)
+            if args.method != 'html':
+                print(f"\n{RED}Error:{RESET} --next-page can only be used with --method html\n")
+                sys.exit(1)
+            if args.url_file:
+                print(f"\n{RED}Error:{RESET} --next-page cannot be used with --url-file\n")
+                sys.exit(1)
+            if not args.url:
+                print(f"\n{RED}Error:{RESET} --next-page requires --url\n")
+                sys.exit(1)
+            # Validate max_pages is a positive integer
+            try:
+                max_pages = int(args.next_page[0])
+                if max_pages < 1:
+                    print(f"\n{RED}Error:{RESET} MAX_PAGES must be >= 1\n")
+                    sys.exit(1)
+            except ValueError:
+                print(f"\n{RED}Error:{RESET} MAX_PAGES must be a valid integer\n")
+                sys.exit(1)
 
         # Validate --rules requires --input
         if args.rules and not args.input:
@@ -530,6 +557,13 @@ def main():
         # Process based on method
         raw_words = []
         if args.method == 'html':
+            # Parse pagination parameters if provided
+            max_pages = None
+            next_identifier = None
+            if args.next_page:
+                max_pages = int(args.next_page[0])
+                next_identifier = args.next_page[1]
+
             if args.url_file:
                 # Batch scraping mode with url-file
                 if not args.quiet:
@@ -594,7 +628,9 @@ def main():
                     min_length=args.min_length,
                     max_length=args.max_length,
                     silent=args.quiet,
-                    preserve=args.preserve
+                    preserve=args.preserve,
+                    max_pages=max_pages,
+                    next_identifier=next_identifier
                 )
         elif args.method == 'github':
             raw_words = github_scraper.scrape(
