@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.3.0] - 2025-11-20
+### ✨ New Features
+- **Pagination Support**: New `--next-page` / `-n` option for automatic multi-page scraping
+- Auto-detects identifier type: CSS selector, URL pattern, or link text
+- Supports up to max pages with configurable limit
+- Automatically handles relative and absolute URLs
+- Sets referrer headers for politeness
+- Includes delay between requests (1 second default)
+- Detects circular pagination to prevent loops
+- Stops gracefully on dead links or missing next links
+- Syntax: `--next-page MAX_PAGES "NEXT_IDENTIFIER"`
+
+### 🎯 HTML Scraping Improvements
+- Pagination works seamlessly with existing filters (`--href`, `--regex`, `--min-length`, `--max-length`)
+- Results from all pages are combined and deduplicated (unless `--preserve` is used)
+
 ## [2.2.1] - 2025-11-18
 ### Added
 - Added setuptools to requirements.txt and setup.py
