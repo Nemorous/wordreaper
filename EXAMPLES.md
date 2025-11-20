@@ -7,6 +7,7 @@ This document provides comprehensive usage examples for Word Reaper, organized b
   - [Precision CSS Selector Scraping](#precision-css-selector-scraping)
   - [Tag-Based Scraping](#tag-based-scraping)
   - [Advanced Filtering](#advanced-filtering)
+  - [Pagination Support](#pagination-support)
   - [Other Scraping Methods](#other-scraping-methods)
 - [Hashcat Rules](#hashcat-rules)
 - [Transform Operations](#transform-operations)
@@ -93,6 +94,143 @@ Combine selectors with regex patterns and length constraints:
 wordreaper --method html --url https://example.com --selector "li, td" \
            --regex "^[A-Z][a-z]+$" --min-length 3 --max-length 20
 ```
+
+### Pagination Support
+
+Automatically scrape multiple pages by following pagination links. The tool auto-detects whether your identifier is a CSS selector, URL 
+pattern, or link text.
+
+#### CSS Selector Pagination
+
+Use CSS selectors to target the "Next" button element:
+ 
+```bash
+# Fandom pagination example (up to 5 pages)
+wordreaper -m html \
+-u "https://harrypotter.fandom.com/wiki/Category:Potion_ingredients" \
+-s "a.category-page__member-link" \
+-n 5 "a.category-page__pagination-next" \
+-o ingredients.txt
+
+# Wikipedia category pagination
+wordreaper -m html \
+-u "https://en.wikipedia.org/wiki/Category:Example" \
+-s "div.mw-category-group li a" \
+-n 10 "a:contains('next page')" \
+-o wikipedia_terms.txt
+```
+
+#### URL Pattern Pagination
+
+Use wildcards (`*`) to match URL patterns:
+
+```bash
+# Match query parameter patterns
+wordreaper -m html \
+-u "https://example.com/items?page=1" \
+-s "div.item-name" \
+-n 10 "*?page=*" \
+-o items.txt
+
+# Match path-based pagination
+wordreaper -m html \
+-u "https://example.com/archive/page/1" \
+-s "article h2" \
+-n 20 "*/page/*" \
+-o archive.txt
+
+# Match specific parameter names
+wordreaper -m html \
+-u "https://api.example.com/data?from=0" \
+-s "span.data-item" \
+-n 15 "*?from=*" \
+-o api_data.txt
+```
+
+#### Link Text Pagination
+
+Search for links containing specific text:
+
+```bash
+# Common "Next" button text
+wordreaper -m html \
+-u "https://example.com/episodes" \
+-s "h2.episode-title" \
+-n 8 "Next" \
+-o episodes.txt
+
+# Alternative pagination text
+wordreaper -m html \
+-u "https://blog.example.com" \
+-s "article.post-title" \
+-n 12 "Older Posts" \
+-o blog_posts.txt
+
+# Unicode symbols
+wordreaper -m html \
+-u "https://example.com/list" \
+-s "span.name" \
+-n 3 "→" \
+-o names.txt
+
+# Language-specific pagination
+wordreaper -m html \
+-u "https://example.fr/articles" \
+-s "div.article-content" \
+-n 5 "Suivant" \
+-o french_articles.txt
+```
+
+#### Pagination with Filters
+
+Combine pagination with other filters for precise scraping:
+
+```bash
+# Pagination with href filtering
+wordreaper -m html \
+-u "https://example.com/products?page=1" \
+-s "a.product-link" \
+--href "/product/" \
+-n 20 "Next Page" \
+-o products.txt
+
+# Pagination with regex filtering
+wordreaper -m html \
+-u "https://example.com/names?p=1" \
+-s "li.name" \
+--regex "^[A-Z][a-z]+$" \
+-n 15 "*?p=*" \
+-o filtered_names.txt
+
+# Pagination with length constraints
+wordreaper -m html \
+-u "https://example.com/words" \
+-s "span.word" \
+--min-length 5 \
+--max-length 15 \
+-n 10 "Next" \
+-o medium_words.txt
+```
+
+#### Pagination Behavior
+
+The pagination feature includes several safety mechanisms:
+
+- **Automatic stopping conditions:**
+- Maximum pages reached
+- No next link found
+- Dead link encountered
+- Circular pagination detected
+
+- **Politeness features:**
+- 1-second delay between requests (configurable)
+- Referrer header set to previous page
+- Handles relative and absolute URLs
+
+- **Result handling:**
+- Results from all pages are combined
+- Automatically deduplicated (unless `--preserve` is used)
+- All existing filters apply to each page
 
 ### Other Scraping Methods
 
