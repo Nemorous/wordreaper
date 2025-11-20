@@ -80,7 +80,8 @@ Automatically scrape multiple pages by following specified identifiers:
 ```bash
 # Follow css identifier
 wordreaper -m html -u "https://harrypotter.fandom.com/wiki/Category:Potion_ingredients" \
-           -s "a.category-page__member-link" -n 2 "a.category-page__pagination-next" -o ingredients.txt
+           -s "a.category-page__member-link" -n 2 "a.category-page__pagination-next" \
+           -o potion_ingredients.txt
 
 # Follow URL pattern
 wordreaper -m html -u "https://example.com/items?page=1" \
