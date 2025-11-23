@@ -30,19 +30,19 @@ pip install .
 
 ---
 
-## 📝 Changelog
+## Changelog
 
 See [`CHANGELOG.md`](CHANGELOG.md)
 
 ---
 
-## 📁 License
+## License
 
 MIT [`LICENSE`](LICENSE)
 
 ---
 
-## 🤝 Contributions
+## Contributions
 
 PRs and issues welcome! Add new scrapers, modules, or mutation strategies.
 
