@@ -1,6 +1,4 @@
 
-<h1 align="center">Wordreaper</h1>
-
 <p align="center">
   <img src="assets/wordreaper_title.png">
 </p>
