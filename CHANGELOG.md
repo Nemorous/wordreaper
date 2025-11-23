@@ -1,7 +1,7 @@
 # Changelog
 
 ## [2.3.0] - 2025-11-20
-### ✨ New Features
+### New Features
 - **Pagination Support**: New `--next-page` / `-n` option for automatic multi-page scraping
 - Auto-detects identifier type: CSS selector, URL pattern, or link text
 - Supports up to max pages with configurable limit
@@ -12,7 +12,7 @@
 - Stops gracefully on dead links or missing next links
 - Syntax: `--next-page MAX_PAGES "NEXT_IDENTIFIER"`
 
-### 🎯 HTML Scraping Improvements
+### HTML Scraping Improvements
 - Pagination works seamlessly with existing filters (`--href`, `--regex`, `--min-length`, `--max-length`)
 - Results from all pages are combined and deduplicated (unless `--preserve` is used)
 
@@ -39,14 +39,14 @@
 - HTML batch scraping added using (-f, --url-file) to scrape from multiple URLs using different selectors
 
 ## [2.0.0] - 2025-11-16
-### 🚨 Breaking Changes
+### Breaking Changes
 - **REMOVED**: Legacy HTML scraping options `--tag`, `--class`, `--id` (replaced with `--selector` and `--tags`)
 - **REMOVED**: `--scrape-mode smart` and `--scrape-mode targeted` (inaccurate and noisy)
 - **REMOVED**: Old transformation flags when used with mutation operations
 - **RENAMED**: `--mentalize` → `--mutate` (clearer naming)
 - **CHANGED**: `--mutation-level` now directly controls complexity (not based on flag count)
 
-### ✨ Major Features Added
+### Major Features Added
 - **Hashcat Rules**: `--rules` runs hashcat rules against wordlists
 - **Transform Options**
   - `--selective-leet <MAX>`: Selective leetspeak with max substitutions
@@ -64,23 +64,23 @@
   - Level 2: ~350 mutations per word (Intermediate)
   - Level 3: ~24k mutations per word (Advanced)
 
-### 🎯 HTML Scraping Improvements
+### HTML Scraping Improvements
 - Precision CSS selectors with `--selector` (primary method)
 - Tag-based scraping with `--tags` for broader capture
 - Removed noisy smart/targeted modes for cleaner, more accurate results
 - Fixed scraping functionality as to not split words
 
-### 📦 Dependencies
+### Dependencies
 - Added `wordninja` for word segmentation (used in `--separators` and `pascal`)
 - Updated all package files to include rules directory
 
-### 🔧 Technical Improvements
+### Technical Improvements
 - Created new `transform.py` module
 - Improved argument validation and mutual exclusivity checks
 - Better error messages and user guidance
 - Most operations can now work independently (no nested flag requirements)
 
-### 📚 Documentation
+### Documentation
 - Complete rewrite and reformatting of help text
 - Added EXAMPLES.md for thorough usage examples and suggestions
 - Updated README.md with all new features and usage examples
