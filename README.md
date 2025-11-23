@@ -5,11 +5,6 @@
 <img src="assets/wordreaper.png">
 
 
-
-> Create & Format Effective Wordlists with Surgical Precision for Password Cracking<br>
-> By `d4rkfl4m3z`
-
-
 ---
 
 ## 💡 What is Word Reaper?
