@@ -5,7 +5,7 @@
 
 
 
-## About the Project
+## <img src="assets/scythe.png" width="48"> About the Project
 
 This tool is designed to scrape and format highly focused wordlists<br> 
 for password cracking, utilizing CSS selectors for surgical precision.
