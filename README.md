@@ -34,10 +34,7 @@ It supports:
 
 ---
 
-## 🚀 Install
-
-### 🔧 Clone & Install Locally
-
+## Install
 ```bash
 git clone https://github.com/Nemorous/wordreaper.git
 cd wordreaper
