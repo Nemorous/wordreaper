@@ -2,7 +2,7 @@
 <h1 align="center">wordreaper</h1>
 
 <p align="center">
-  <img src="wordreaper_title.png" width="300">
+  <img src="wordreaper_title.png" width="700">
 </p>
 
 
@@ -22,7 +22,7 @@ for password cracking, utilizing CSS selectors for surgical precision.
   - Supports targeted scraping from any HTML source  
 
 - **GitHub/Gist/CVS wordlist pulling**
-  - Fetches raw files directly from GitHub repos, Gists, or CVS platforms  
+  - Fetches raw files directly from GitHub repos, Gists, or CVS sources  
   - Allows automatic integration of community-maintained wordlists  
 
 - **Plaintext scraping**
@@ -38,32 +38,32 @@ for password cracking, utilizing CSS selectors for surgical precision.
   - Adjustable complexity levels for targeted output sizes  
 
 - **Mask-based permutations (Hashcat-style)**
-  - Fully supports ?l ?u ?d ?s and custom character sets  
+  - Fully supports ?l ?u ?d ?s ?a and custom character sets  
   - Generates exhaustive permutations using mask notation  
 
 - **Prepend/Append operations**
   - Adds prefixes or suffixes to each word  
-  - Can increment numerically for password-pattern simulation  
+  - Can use Hashcat-style increment
+  - Can also append/prepend simultaneously  
 
 - **Wordlist merging & combinator functionality**
-  - Combines two or more lists into hybrid forms  
-  - Useful for username:word, domain:keyword, or multi-stage list generation  
+  - Merge numerous wordlists while cleaning and deduplicating  
+  - Use Hashcat combinator to combine words  
 
 - **Rule support (Hashcat-style or custom)**
   - Reads rule files and applies transformations exactly as Hashcat would  
   - Supports your own rule definitions for maximum flexibility  
 
 - **Case conversion**
-  - Converts words to lower, upper, PascalCase, Sentence case, etc.  
+  - Converts words to lower, upper, PascalCase, Sentence case  
   - Helps normalize or systematically diversify output  
 
 - **Advanced transforms**
   - Selective leetspeak, reverse string, add separators, sanitize characters  
   - Useful for human-pattern password generation  
 
-- **Custom mask output for CTF flag formats**
-  - Tailored mask generation for formats like `FLAG{...}`, `HTB{...}`, etc.  
-  - Great for solving wordlist-based cracking challenges in CTF events  
+- **Custom mask output for CTF flag patterns**
+  - Tailored mask generation for formats like `SKY-F?u?uG-1?d3?d`   
 
 </details>
 
