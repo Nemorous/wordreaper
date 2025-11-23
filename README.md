@@ -38,7 +38,7 @@ See [`CHANGELOG.md`](CHANGELOG.md)
 
 ## 📁 License
 
-MIT
+MIT [`LICENSE`](LICENSE)
 
 ---
 
