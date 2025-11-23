@@ -1,5 +1,6 @@
 
-<h1 align="center">wordreaper</h1>
+<h1 align="center">Wordreaper</h1>
+<p align="center">Generate smart and powerful wordlists for focused attacks</p>
 
 <p align="center">
   <img src="assets/wordreaper_title.png">
