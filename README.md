@@ -1,5 +1,5 @@
 
-<h1 align="left">wordreaper</h1>
+<h1 align="center">wordreaper</h1>
 
 
 
@@ -23,7 +23,7 @@ pip install .
 ---
 
 ## Usage
-<img src="assets/wordreaper.png">
+<img src="assets/wordreaper_usage.png">
 
 <i>For more usage information, please refer to [`EXAMPLES.md`](EXAMPLES.md)</i>
 
