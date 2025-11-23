@@ -3,7 +3,7 @@
   <img src="assets/wordreaper_title.png">
 </p>
 
-
+<br>
 
 ## About the Project
 
