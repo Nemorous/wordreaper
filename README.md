@@ -46,5 +46,5 @@ MIT [`LICENSE`](LICENSE)
 
 PRs and issues welcome! Add new scrapers, modules, or mutation strategies.
 
-Made with ☕ and 🔥 By d4rkfl4m3z
+> Made with ☕ and 🔥 By d4rkfl4m3z
 
