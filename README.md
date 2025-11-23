@@ -24,7 +24,7 @@ pip install .
 
 ## Usage
 <img src="assets/wordreaper.png">
-
+<i>For more usage information, please refer to #EXAMPLES.md</i>
 ---
 
 ## 📝 Changelog
