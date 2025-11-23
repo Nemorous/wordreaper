@@ -1,30 +1,14 @@
 
-<h1 align="left">Word Reaper</h1>
+<h1 align="left">wordreaper</h1>
 
 <img src="assets/wordreaper.png">
 
 
 
 
-## 💡 What is Word Reaper?
+## About the Project
 
-**Word Reaper** is a powerful, modular tool for generating, mutating, and combining wordlists — ideal for use in cracking passwords with themes/subthemes. 
-This tool was developed for Linux and Windows, with NCL password-cracking challenges in mind.
-
-It supports:
-
-- 🕸️ HTML scraping (with precision CSS selectors)
-- 🐙 GitHub/Gist/CVS wordlist pulling
-- 👻 Plaintext scraping from simple lists
-- 📁 File loading from local environment
-- 🧪 Common mutations with varying complexities
-- 🍺 Hashcat-style mask-based permutations
-- 💎 Prepend/Append simultaneously with or without increment
-- ⚔️ Merging and combining (combinator) wordlists
-- 🐱 Hashcat-style rules or custom rules
-- 💼 Case conversion to lower, upper, pascal, sentence
-- 👽 Transform with selective leet, reverse, separators
-- 🚩 Use custom masks to output flag patterns for CTFs
+This tool is designed to generate highly customizable and comprehensive wordlists for cybersecurity, CTFs, and password-analysis workflows. It supports precise HTML scraping using CSS selectors, fetching content from GitHub, Gists, or CVS sources, and extracting plaintext from simple lists or local files. Once data is collected, the tool can apply a wide range of transformations, including common mutations of varying complexity, Hashcat-style mask-based permutations, rule-based modifications, and simultaneous prepend/append operations with or without incremental logic. It can merge and combine multiple wordlists, adjust case formats (lower, upper, Pascal, sentence), and apply advanced transformations such as selective leetspeak, reversing, or inserting separators. Users can also define custom masks to produce CTF-oriented flag patterns, making the tool an all-in-one solution for building powerful, targeted, and flexible wordlists.
 
 ---
 
