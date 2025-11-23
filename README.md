@@ -46,7 +46,7 @@ pip install .
 
 ---
 
-## <img src="assets/scythe.png" width="48"/> Usage
+## Usage
 
 ### 💀 HTML Scraping with CSS Selectors
 ```bash
