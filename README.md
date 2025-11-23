@@ -8,7 +8,8 @@
 
 ## About the Project
 
-This tool is designed to scrape and format highly focused wordlists for password cracking, utilizing CSS selectors for surgical precision.
+This tool is designed to scrape and format highly focused wordlists<br> 
+for password cracking, utilizing CSS selectors for surgical precision.
 
 ---
 
