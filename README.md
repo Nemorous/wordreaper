@@ -4,7 +4,7 @@
 <img src="assets/wordreaper.png">
 
 
----
+
 
 ## 💡 What is Word Reaper?
 
