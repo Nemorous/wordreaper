@@ -8,7 +8,7 @@
 
 ## About the Project
 
-This tool is designed to generate highly customizable and comprehensive wordlists for cybersecurity, CTFs, and password-analysis workflows. It supports precise HTML scraping using CSS selectors, fetching content from GitHub, Gists, or CVS sources, and extracting plaintext from simple lists or local files. Once data is collected, the tool can apply a wide range of transformations, including common mutations of varying complexity, Hashcat-style mask-based permutations, rule-based modifications, and simultaneous prepend/append operations with or without incremental logic. It can merge and combine multiple wordlists, adjust case formats (lower, upper, Pascal, sentence), and apply advanced transformations such as selective leetspeak, reversing, or inserting separators. Users can also define custom masks to produce CTF-oriented flag patterns, making the tool an all-in-one solution for building powerful, targeted, and flexible wordlists.
+This tool is designed to scrape and format highly focused wordlists for password cracking, utilizing CSS selectors for surgical precision.
 
 ---
 
