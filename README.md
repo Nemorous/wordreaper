@@ -2,7 +2,7 @@
 <h1 align="center">wordreaper</h1>
 
 <p align="center">
-  <img src="wordreaper_title.png" width="700">
+  <img src="wordreaper_title.png">
 </p>
 
 
