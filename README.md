@@ -24,9 +24,8 @@ pip install .
 
 ## Usage
 <img src="assets/wordreaper.png">
-For more usage information, please refer to 
 
-[`EXAMPLES.md`](EXAMPLES.md)
+For more usage information, please refer to [`EXAMPLES.md`](EXAMPLES.md)
 
 
 ---
