@@ -1,5 +1,12 @@
 # Changelog
 
+## [Unreleased] - 2025-11-25
+### Removed
+- Removed 6 dead utility files from `word_reaper/utils/`:
+  - `merge.py`, `progress_reporting.py`, `rule_generator.py`
+  - `temp_files.py`, `combinator.py`, `combinator_hashcat.py`
+- Cleaned up unused import in main module
+
 ## [2.3.0] - 2025-11-20
 ### New Features
 - **Pagination Support**: New `--next-page` / `-n` option for automatic multi-page scraping
