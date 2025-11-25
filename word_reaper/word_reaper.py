@@ -13,7 +13,7 @@ import sys
 import os
 import logging
 from word_reaper.scraper import html_scraper, github_scraper, file_loader, text_scraper
-from word_reaper.utils import cleaner, formatter, permutator, merge, wordreaper_mutator
+from word_reaper.utils import cleaner, formatter, permutator, wordreaper_mutator
 import word_reaper.utils.ascii_art as ascii_art
 from word_reaper.utils import ascii as banner
 
