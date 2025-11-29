@@ -190,7 +190,7 @@ def scrape_with_pagination(url, selector=None, href_contains=None, text_regex=No
 
         if not elements:
             if not silent:
-                print(f"{RED}Warning: No elements found on page {pages_scraped}{RESET}")
+                print(f"\n{RED}Warning: No elements found on page {pages_scraped}{RESET}")
         else:
             # Extract words from elements
             page_words = []
