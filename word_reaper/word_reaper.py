@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Word Reaper - Reap & Forge Wordlists for Password Cracking
+Word Reaper - Reap & Forge Wordlists for Password Cracking 
 
 This tool allows you to scrape, manipulate, and combine wordlists for password cracking
 with high-performance using Hashcat utilities.
