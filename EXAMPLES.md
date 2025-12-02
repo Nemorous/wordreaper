@@ -18,7 +18,7 @@ This document provides comprehensive usage examples for Word Reaper, organized b
 
 ---
 
-## Web Scraping
+## Web Scraping 
 
 ### Precision CSS Selector Scraping
 
