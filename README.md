@@ -5,7 +5,7 @@
 
 <br>
 
-## About the Project 
+## About the Project
 
 This tool is designed to scrape and generate smart, focused wordlists<br> 
 for powerful password cracking, utilizing CSS selectors with surgical precision.
