@@ -51,10 +51,11 @@ def get_binary_path(binary_name):
 
     if bin_path and os.path.exists(bin_path):
         if system != "Windows":
-            try:
-                os.chmod(bin_path, 0o755)
-            except Exception as e:
-                print(f"{RED}Warning: Could not set executable permissions: {e}{RESET}")
+            if not os.access(bin_path, os.X_OK): # skip chmod if already executable
+                try:
+                    os.chmod(bin_path, 0o755)
+                except Exception as e:
+                    print(f"{RED}Warning: Could not set executable permissions: {e}{RESET}")
         return bin_path
 
     print(f"{RED}Warning: Could not find {binary_name} in word_reaper/bin directory{RESET}")
