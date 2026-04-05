@@ -50,7 +50,7 @@ def get_binary_path(binary_name):
         bin_path = None
 
     if bin_path and os.path.exists(bin_path):
-        if system != "Windows":
+        if system != "windows":
             if not os.access(bin_path, os.X_OK): # skip chmod if already executable
                 try:
                     os.chmod(bin_path, 0o755)
